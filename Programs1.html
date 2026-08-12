@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs | OCAAT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            padding-top: 96px; 
+            transition: background-color 0.5s ease;
+            background-attachment: fixed;
+            
+            /* Light Theme: Now uses subtle Black/Navy etched lines for visibility */
+            background-color: #f1f5f9;
+            /* Changed stroke to %230f172a (Navy) and opacity to 0.15 for etching feel */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f172a' stroke-width='0.4' stroke-opacity='0.15'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%230f172a' fill-opacity='0.1'/%3E%3C/g%3E%3C/svg%3E");
+            animation: techFlow 15s linear infinite;
+        }
+
+        /* The Tech Line Animation */
+        @keyframes techFlow {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Dark Theme: Keeps the Glowing Blue aesthetic */
+        .dark body {
+            background-color: #020617;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='0.6' stroke-opacity='0.15'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='%2338bdf8' fill-opacity='0.2'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%2338bdf8' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
+            animation: techFlow 10s linear infinite;
+        }
+
+        .fixed-nav { position: fixed; top: 0; left: 0; right: 0; height: 96px; z-index: 1000; }
+        
+        /* Modal Animation */
+        .modal-active { display: flex !important; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-filter { background-color: #38bdf8 !important; color: white !important; border-color: #38bdf8 !important; }
+    </style>
+</head>
+<body class="text-[#0f172a] dark:text-gray-100">
+
+    <nav class="fixed-nav bg-white/90 dark:bg-[#0f172a]/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-3xl font-black tracking-tighter text-[#0f172a] dark:text-white">OCAAT<span class="text-[#38bdf8]">.</span></span>
+            </div>
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="index.html" class="text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">Home</a>
+                <a href="#" class="text-sm font-bold text-[#38bdf8] uppercase">Programs</a>
+                <a href="admission.html" class="text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">Admissions</a>
+                <a href="news.html" class="text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">News</a>
+                <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 text-gray-400 hover:text-[#38bdf8] transition">
+                    <i class="fa-solid fa-circle-half-stroke text-xl"></i>
+                </button>
+                <a href="booknow.html" class="bg-[#38bdf8] text-white px-8 py-3 rounded-full text-xs font-black hover:scale-105 transition-all shadow-lg uppercase tracking-widest">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 px-6">
+        <div class="max-w-7xl mx-auto text-center lg:text-left">
+            <h1 class="text-5xl lg:text-7xl font-black tracking-tightest mb-6">Choose Your <span class="text-[#38bdf8]">Craft.</span></h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl font-medium mx-auto lg:mx-0">Explore our vocational and technical courses. Filter below to start your journey.</p>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-wrap justify-center lg:justify-start gap-4">
+        <button onclick="filterType('all', this)" class="filter-btn active-filter px-8 py-3 rounded-full bg-white dark:bg-slate-900 border border-gray-100 dark:border-white/5 text-xs font-bold uppercase tracking-widest transition-all">All Programs</button>
+        <button onclick="filterType('diploma', this)" class="filter-btn px-8 py-3 rounded-full bg-white dark:bg-slate-900 border border-gray-100 dark:border-white/5 text-xs font-bold uppercase tracking-widest transition-all">Diplomas</button>
+        <button onclick="filterType('certificate', this)" class="filter-btn px-8 py-3 rounded-full bg-white dark:bg-slate-900 border border-gray-100 dark:border-white/5 text-xs font-bold uppercase tracking-widest transition-all">Certificates</button>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="programGrid"></div>
+    </main>
+
+    <div id="courseModal" class="fixed inset-0 z-[2000] hidden bg-black/80 backdrop-blur-md items-center justify-center p-6">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[3rem] p-10 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+<script>
+    const courses = [
+        { 
+            id: 'multimedia', 
+            type: 'diploma', 
+            title: 'Multimedia', 
+            img: 'gaza.jpeg', 
+            desc: 'A fusion of digital art and technology. Master visual communication, UI/UX design, and professional photography.',
+            req: 'BGCSE with minimum Grade C in English and Art/Design related subject.',
+            modules: ['Visual Communication', 'Web Design', 'Photography', 'Branding & Identity'] 
+        },
+        { 
+            id: 'it', 
+            type: 'diploma', 
+            title: 'Information Tech', 
+            img: 'it.jpeg', 
+            desc: 'The backbone of the digital economy. Master networking, software engineering, and systems security.',
+            req: 'BGCSE with minimum Grade C in English and Mathematics.',
+            modules: ['Programming', 'Network Security', 'Database Admin', 'Cloud Computing'] 
+        },
+        { 
+            id: 'jewellery', 
+            type: 'diploma', 
+            title: 'Jewellery Design', 
+            img: 'https://images.unsplash.com/photo-1531995811006-35cb42e1a022?w=600', 
+            desc: 'Transform raw minerals into luxury. Focuses on diamond processing and high-end metal craftsmanship.',
+            req: 'BGCSE with minimum Grade D in English and Grade C in Art or Design.',
+            modules: ['Gemology', 'Metal Casting', 'CAD for Jewellery', 'Diamond Grading'] 
+        },
+        { 
+            id: 'furniture', 
+            type: 'certificate', 
+            title: 'Furniture Design', 
+            img: 'bame.jpeg', 
+            desc: 'Master industrial woodworking and modern aesthetics to create functional, high-end interior pieces.',
+            req: 'Junior Certificate (JC) or BGCSE with interest in Woodwork/Design.',
+            modules: ['Woodwork Fundamentals', 'Technical Drawing', 'Material Science'] 
+        },
+        { 
+            id: 'sports', 
+            type: 'certificate', 
+            title: 'Sports & Rec', 
+            img: 'bonolo.jpeg', 
+            desc: 'Launch a career in fitness. Learn professional coaching, facility management, and exercise science.',
+            req: 'Junior Certificate (JC) or BGCSE. Evidence of sporting background is an advantage.',
+            modules: ['Coaching Theory', 'Sports Management', 'First Aid & Safety'] 
+        },
+        { 
+            id: 'lab', 
+            type: 'certificate', 
+            title: 'Lab Sciences', 
+            img: 'lab.jpeg', 
+            desc: 'Bridge the gap between theory and industry. Master chemical analysis and laboratory safety protocols.',
+            req: 'BGCSE with minimum Grade D in English and Science/Chemistry.',
+            modules: ['Chemical Analysis', 'Lab Safety', 'Microbiology'] 
+        }
+    ];
+
+    function renderCourses(filter = 'all') {
+        const grid = document.getElementById('programGrid');
+        const filtered = courses.filter(c => filter === 'all' || c.type === filter);
+        
+        grid.innerHTML = filtered.map(c => `
+            <div class="bg-white/80 dark:bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] border border-gray-100 dark:border-white/10 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="${c.img}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <span class="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-slate-800 rounded-full text-[9px] font-black text-[#38bdf8] uppercase tracking-tighter">${c.type}</span>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-black mb-2 tracking-tighter group-hover:text-[#38bdf8] transition-colors">${c.title}</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 leading-relaxed line-clamp-2">${c.desc}</p>
+                    <button onclick="openModal('${c.id}')" class="w-full py-4 rounded-xl bg-gray-50 dark:bg-white/5 text-[#0f172a] dark:text-white font-bold text-[10px] uppercase tracking-widest hover:bg-[#38bdf8] hover:text-white transition">View Syllabus</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openModal(id) {
+        const course = courses.find(c => c.id === id);
+        const modalBody = document.getElementById('modalBody');
+        
+        modalBody.innerHTML = `
+            <div class="flex flex-col h-full">
+                <button onclick="closeModal()" class="flex items-center text-gray-400 hover:text-[#38bdf8] mb-6 transition font-bold text-xs uppercase tracking-widest">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to Grid
+                </button>
+
+                <h2 class="text-4xl font-black mb-2 tracking-tighter text-[#0f172a] dark:text-white">${course.title} Syllabus</h2>
+                
+                <div class="my-6 p-5 bg-blue-50 dark:bg-blue-400/10 border border-blue-100 dark:border-blue-400/20 rounded-2xl">
+                    <div class="flex items-center mb-2">
+                        <i class="fa-solid fa-graduation-cap text-[#38bdf8] mr-2"></i>
+                        <h4 class="text-[10px] font-black uppercase text-[#38bdf8] tracking-widest">Entry Requirements</h4>
+                    </div>
+                    <p class="text-sm font-bold text-slate-700 dark:text-blue-100">${course.req}</p>
+                </div>
+
+                <h4 class="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-4">Core Modules</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    ${course.modules.map(m => `
+                        <div class="p-5 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 rounded-2xl flex items-center">
+                            <i class="fa-solid fa-check text-[#38bdf8] mr-3"></i>
+                            <span class="text-sm font-bold">${m}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <a href="booknow.html" class="block w-full">
+    <button class="mt-10 w-full py-5 bg-[#38bdf8] text-white font-black rounded-2xl uppercase tracking-[0.2em] text-xs hover:shadow-lg transition-all">
+        Apply for 2026 Intake
+    </button>
+</a>
+            </div>
+        `;
+        document.getElementById('courseModal').classList.add('modal-active');
+    }
+
+    function closeModal() {
+        document.getElementById('courseModal').classList.remove('modal-active');
+    }
+
+    function filterType(type, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
+        btn.classList.add('active-filter');
+        renderCourses(type);
+    }
+
+    window.onclick = (e) => { if(e.target == document.getElementById('courseModal')) closeModal(); }
+
+    renderCourses();
+</script>
+</body>
+</html>

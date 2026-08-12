@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCAAT | Oodi College of Applied Arts & Technology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.5s ease;
+            background-attachment: fixed;
+            /* Light Theme: Subtle Navy etched lines */
+            background-color: #f1f5f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f172a' stroke-width='0.4' stroke-opacity='0.1'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%230f172a' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
+            animation: techFlow 25s linear infinite;
+        }
+
+        .dark body {
+            background-color: #020617;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='0.6' stroke-opacity='0.12'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='%2338bdf8' fill-opacity='0.15'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%2338bdf8' fill-opacity='0.15'/%3E%3C/g%3E%3C/svg%3E");
+            animation: techFlow 18s linear infinite;
+        }
+
+        @keyframes techFlow {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        
+        /* Glass effect for content sections so lines peek through */
+        .glass-section { background-color: rgba(241, 245, 249, 0.85); backdrop-filter: blur(4px); }
+        .dark .glass-section { background-color: rgba(2, 6, 23, 0.85); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body class="text-gray-900 dark:text-gray-100 overflow-x-hidden">
+
+    <nav class="bg-white/90 dark:bg-[#0f172a]/90 nav-blur sticky top-0 z-50 border-b border-gray-100 dark:border-white/5 h-24">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-3xl font-black tracking-tighter text-[#0f172a] dark:text-white">
+                    OCAAT<span class="text-[#38bdf8]">.</span>
+                </span>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="#" class="text-sm font-bold text-[#38bdf8] tracking-wide">HOME</a>
+                <a href="Programs1.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition tracking-wide uppercase">Programs</a>
+                <a href="admission.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition tracking-wide uppercase">Admissions</a>
+                <a href="news.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition tracking-wide uppercase">News</a>
+                
+                <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 text-gray-400 hover:text-[#38bdf8] transition">
+                    <i class="fa-solid fa-circle-half-stroke text-xl"></i>
+                </button>
+
+                <a href="booknow.html" class="bg-[#38bdf8] text-white px-8 py-3 rounded-full text-xs font-black hover:bg-[#0f172a] transition-all shadow-lg shadow-blue-400/30 uppercase tracking-widest">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-[85vh] flex items-center bg-gradient-to-b from-[#1e293b]/90 to-[#0f172a]/95 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="20260325_111506.png" class="w-full h-full object-cover opacity-20 mix-blend-overlay">
+            <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-3 py-2 px-5 rounded-full bg-blue-400/10 border border-blue-400/20 backdrop-blur-xl">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38bdf8] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-[#38bdf8]"></span>
+                        </span>
+                        <span class="text-[11px] font-black text-blue-100 uppercase tracking-[0.2em]">Enrollment 2026 is Live</span>
+                    </div>
+                    <h1 class="text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tighter">
+                        Where <span class="text-[#38bdf8]">Art</span> <br>Meets Tech.
+                    </h1>
+                    <p class="text-xl text-blue-100/60 max-w-md leading-relaxed">
+                        Oodi College is Botswana's premier hub for digital creators and technical innovators.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <button class="bg-[#38bdf8] text-white px-10 py-5 rounded-2xl font-black hover:bg-[#0ea5e9] hover:-translate-y-1 transition-all shadow-xl shadow-blue-400/20 uppercase text-xs tracking-widest">
+                            Explore Courses
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <div class="relative bg-white/5 border border-white/10 p-5 rounded-[2.5rem] backdrop-blur-md">
+                         <img src="9215.png" class="rounded-[1.8rem] opacity-90 brightness-110" alt="Tech">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 glass-section relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] dark:text-white mb-6 tracking-tighter">
+                    Future-Ready <span class="text-[#38bdf8]">Programs.</span>
+                </h2>
+                <p class="text-gray-500 dark:text-gray-400 font-medium max-w-xl">Practical paths designed for the modern industry.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <script>
+                    const courses = [
+                        {title: "Multimedia", type: "Diploma", desc: "Visual storytelling, digital animation, and graphic communication.", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80"},
+                        {title: "Information Tech", type: "Diploma", desc: "Software engineering, network security, and systems admin.", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"},
+                        {title: "Jewellery Design", type: "Diploma", desc: "Fine arts craftsmanship and industrial manufacturing.", img: "https://images.unsplash.com/photo-1531995811006-35cb42e1a022?auto=format&fit=crop&w=600&q=80"},
+                        {title: "Furniture Design", type: "Certificate", desc: "Industrial woodworking and contemporary aesthetics.", img: "https://images.unsplash.com/photo-1581414082107-4c30c2c31db1?auto=format&fit=crop&w=600&q=80"},
+                        {title: "Sports & Rec", type: "Certificate", desc: "Professional coaching and recreational management.", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80"},
+                        {title: "Lab Sciences", type: "Certificate", desc: "Chemical analysis and industrial laboratory procedures.", img: "https://images.unsplash.com/photo-1532187875605-7fe3584d0ee5?auto=format&fit=crop&w=600&q=80"}
+                    ];
+
+                    document.write(courses.map(c => `
+                        <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-[2rem] overflow-hidden border border-white dark:border-white/5 shadow-sm flex flex-col hover:translate-y-[-4px] transition-all duration-300">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${c.img}" class="w-full h-full object-cover">
+                                <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-[#38bdf8] text-[9px] font-black uppercase tracking-widest">${c.type}</div>
+                            </div>
+                            <div class="p-8 flex-grow flex flex-col">
+                                <h3 class="text-2xl font-black text-[#0f172a] dark:text-white mb-3 tracking-tighter">${c.title}</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 flex-grow leading-relaxed">${c.desc}</p>
+                                <button class="w-full py-4 rounded-xl bg-[#0f172a] dark:bg-[#38bdf8] text-white font-black text-[10px] uppercase tracking-widest hover:opacity-90">Details</button>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0f172a] dark:bg-[#020617] pt-20 pb-10 text-gray-400 border-t border-white/5 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="space-y-6">
+                    <span class="text-3xl font-black tracking-tighter text-white">OCAAT<span class="text-[#38bdf8]">.</span></span>
+                    <p class="text-sm leading-relaxed">Botswana’s leading institution for Applied Arts and Technology. Shaping the future through creativity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#38bdf8] transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#38bdf8] transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Quick Links</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-[#38bdf8] transition">Student Portal</a></li>
+                        <li><a href="#" class="hover:text-[#38bdf8] transition">Library Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Top Programs</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-[#38bdf8] transition">Multimedia Design</a></li>
+                        <li><a href="#" class="hover:text-[#38bdf8] transition">Information Tech</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Visit Us</h4>
+                    <p class="text-sm mb-4">Oodi, Botswana<br>Near Junction</p>
+                    <p class="text-sm text-[#38bdf8] font-bold">+267 39xxxxxx</p>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-10 text-center text-[10px] font-bold uppercase tracking-[0.2em]">
+                <p>&copy; 2026 Oodi College of Applied Arts & Technology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

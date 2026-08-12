@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | OCAAT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono&display=swap');
+        * { font-family: 'Inter', sans-serif !important; }
+        .mono { font-family: 'JetBrains Mono', monospace !important; }
+
+        body { 
+            transition: background-color 0.5s ease;
+            background-attachment: fixed;
+            background-color: #f1f5f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f172a' stroke-width='0.4' stroke-opacity='0.15'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1' fill='%230f172a' fill-opacity='0.1'/%3E%3C/g%3E%3C/svg%3E");
+            animation: techFlow 15s linear infinite;
+        }
+
+        @keyframes techFlow { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
+
+        .dark body {
+            background-color: #020617;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='0.6' stroke-opacity='0.15'%3E%3Cpath d='M0 50h30l20-20h50M0 0h20v20M80 80h20v20M50 100V80l-20-20H0'/%3E%3Ccircle cx='30' cy='50' r='1.5' fill='%2338bdf8' fill-opacity='0.2'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%2338bdf8' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .nav-translucent { backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+        .mode-toggle { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(90deg, #1e293b 50%, transparent 50%); border: 2px solid #1e293b; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dark .mode-toggle { background: linear-gradient(90deg, transparent 50%, #fff 50%); border-color: #fff; transform: rotate(180deg); }
+
+        .glass-input {
+            background: transparent;
+            border-bottom: 2px solid rgba(15, 23, 42, 0.1);
+            border-radius: 0;
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+        .dark .glass-input { border-bottom-color: rgba(255, 255, 255, 0.05); }
+        .glass-input:focus { border-bottom-color: #38bdf8; outline: none; padding-left: 10px; }
+        
+        .input-error { border-bottom-color: #ef4444 !important; }
+        .error-msg { color: #ef4444; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; display: none; }
+        .show-error .error-msg { display: block; }
+
+        .drop-zone { border: 2px dashed rgba(15, 23, 42, 0.1); transition: all 0.3s ease; }
+        .dark .drop-zone { border-color: rgba(255, 255, 255, 0.05); }
+        .drop-zone.drag-over { border-color: #38bdf8; background: rgba(56, 189, 248, 0.05); }
+
+        .step-content { transition: all 0.6s ease; }
+    </style>
+</head>
+<body class="text-gray-900 dark:text-gray-100 overflow-x-hidden">
+
+    <nav class="bg-white/80 dark:bg-[#020617]/80 nav-translucent sticky top-0 z-[1000] border-b border-gray-100 dark:border-white/10 h-24 w-full">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-3xl font-black tracking-tighter text-[#0f172a] dark:text-white uppercase">OCAAT<span class="text-[#38bdf8]">.</span></span>
+            </div>
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="index.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">HOME</a>
+                <a href="Programs1.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">Programs</a>
+                <a href="admission.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">Admissions</a>
+                <a href="news.html" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-[#38bdf8] transition uppercase">News</a>
+                <button id="theme-btn" class="flex items-center justify-center p-2 hover:scale-110 transition-transform"><div class="mode-toggle"></div></button>
+                <a href="#" class="bg-[#38bdf8] text-white px-8 py-3 rounded-full text-xs font-black hover:bg-[#0f172a] transition-all uppercase tracking-widest whitespace-nowrap">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-20 min-h-screen">
+        <form id="applyNowForm" novalidate>
+            
+            <div id="step-1" class="step-content">
+                <div class="mb-16">
+                    <span class="mono text-[#38bdf8] text-[10px] font-black uppercase tracking-[0.5em]">Gate_01 // Program_Selection</span>
+                    <h1 class="text-7xl font-black uppercase tracking-tighter mt-4 leading-[0.9]">Apply <br><span class="text-[#38bdf8]">Now.</span></h1>
+                    <div id="radio-error" class="error-msg mt-4">Please select a program to continue</div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div>
+                        <h2 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 pb-2 border-b border-gray-200 dark:border-white/5">Diplomas</h2>
+                        <div class="space-y-1">
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Dip_Multimedia" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">Multimedia</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Dip_ICT" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">ICT</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Dip_Jewellery" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">Jewellery Design</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 pb-2 border-b border-gray-200 dark:border-white/5">Certificates</h2>
+                        <div class="space-y-1">
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Cert_Science" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">Applied Sciences</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Cert_Sports" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">Sports and Recreational</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                            <label class="group flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-[#38bdf8]/5 transition-all">
+                                <input type="radio" name="program" value="Cert_Furniture" class="hidden peer">
+                                <span class="text-xl font-bold uppercase transition-transform group-hover:translate-x-2">Furniture Design</span>
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-white/20 peer-checked:bg-[#38bdf8] peer-checked:border-[#38bdf8] transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20">
+                    <button type="button" onclick="nextStep(2)" class="bg-[#0f172a] dark:bg-white dark:text-[#0f172a] text-white px-12 py-6 rounded-full font-black uppercase text-[11px] tracking-[0.2em] hover:scale-105 transition-all shadow-2xl">Continue to Profile →</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content hidden opacity-0">
+                <div class="mb-16">
+                    <span class="mono text-[#38bdf8] text-[10px] font-black uppercase tracking-[0.5em]">Gate_02 // Identity_Check</span>
+                    <h1 class="text-7xl font-black uppercase tracking-tighter mt-4 leading-[0.9]">Applicant <br><span class="text-[#38bdf8]">Data.</span></h1>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
+                    <div class="flex flex-col"><label class="text-[10px] font-black uppercase text-gray-400">Surname</label><input type="text" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                    <div class="flex flex-col"><label class="text-[10px] font-black uppercase text-gray-400">First Name</label><input type="text" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                    <div class="flex flex-col"><label class="text-[10px] font-black uppercase text-gray-400">Omang / Passport</label><input type="text" required maxlength="9" class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                    <div class="flex flex-col md:col-span-2"><label class="text-[10px] font-black uppercase text-gray-400">Physical Address</label><input type="text" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                </div>
+
+                <div class="mt-20 flex justify-between items-center">
+                    <button type="button" onclick="nextStep(1, true)" class="text-[11px] font-black uppercase tracking-widest text-gray-400">← Back</button>
+                    <button type="button" onclick="nextStep(3)" class="bg-[#38bdf8] text-white px-12 py-6 rounded-full font-black uppercase text-[11px] tracking-[0.2em] hover:scale-105 transition-all">Submit Academics →</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content hidden opacity-0">
+                <div class="mb-16">
+                    <span class="mono text-[#38bdf8] text-[10px] font-black uppercase tracking-[0.5em]">Gate_03 // Result_Validation</span>
+                    <h1 class="text-7xl font-black uppercase tracking-tighter mt-4 leading-[0.9]">Academic <br><span class="text-[#38bdf8]">Record.</span></h1>
+                </div>
+
+                <div class="space-y-12">
+                    <div id="subject-list" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-12">
+                            <div class="flex flex-col"><input type="text" placeholder="Subject" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                            <div class="flex flex-col"><input type="text" placeholder="Grade" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="addSubject()" class="text-[#38bdf8] text-[10px] font-black uppercase tracking-widest">+ Add Result Line</button>
+
+                    <div class="mt-16">
+                        <h2 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">Supporting Documents</h2>
+                        <div id="drop-zone" class="drop-zone relative group p-12 rounded-[2.5rem] border-2 flex flex-col items-center justify-center text-center cursor-pointer">
+                            <input type="file" id="file-input" required class="absolute inset-0 opacity-0 cursor-pointer">
+                            <div class="w-12 h-12 mb-4 bg-[#38bdf8]/10 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#38bdf8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                            </div>
+                            <span class="text-xs font-black uppercase tracking-widest" id="file-name">Upload BGCSE / Transcript</span>
+                            <p class="text-[10px] text-gray-400 uppercase mt-2">PDF, JPG or PNG (Max 5MB)</p>
+                        </div>
+                        <span id="file-error" class="error-msg mt-4">Please upload your academic document</span>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-start gap-6 p-10 bg-gray-200/50 dark:bg-white/5 rounded-[2.5rem]">
+                            <input type="checkbox" id="cert-check" required class="mt-1 w-6 h-6 accent-[#38bdf8]">
+                            <p class="text-[11px] font-bold uppercase text-gray-500 leading-relaxed">I certify that all details are true. This submission acts as my legal digital signature for the 2026 intake.</p>
+                        </div>
+                        <span id="check-error" class="error-msg ml-10">Certification Required</span>
+                    </div>
+
+                    <div class="mt-20 flex justify-between items-center">
+                        <button type="button" onclick="nextStep(2, true)" class="text-[11px] font-black uppercase tracking-widest text-gray-400">← Back</button>
+                        <button type="submit" class="bg-emerald-500 text-white px-16 py-6 rounded-full font-black uppercase text-[11px] tracking-[0.2em] hover:shadow-xl transition-all">Complete Application</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        function nextStep(step, isBack = false) {
+            const currentStepDiv = document.querySelector('.step-content:not(.hidden)');
+            if (!isBack) {
+                let allValid = true;
+                if (currentStepDiv.id === 'step-1') {
+                    const hasSelection = Array.from(currentStepDiv.querySelectorAll('input[type="radio"]')).some(r => r.checked);
+                    document.getElementById('radio-error').style.display = hasSelection ? 'none' : 'block';
+                    if (!hasSelection) allValid = false;
+                } else {
+                    currentStepDiv.querySelectorAll('input[required]').forEach(input => {
+                        if (input.value.trim() === "") {
+                            allValid = false;
+                            input.classList.add('input-error');
+                            input.parentElement.classList.add('show-error');
+                        } else {
+                            input.classList.remove('input-error');
+                            input.parentElement.classList.remove('show-error');
+                        }
+                    });
+                }
+                if (!allValid) return; 
+            }
+            document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden', 'opacity-0'));
+            const target = document.getElementById(`step-${step}`);
+            target.classList.remove('hidden');
+            setTimeout(() => target.classList.remove('opacity-0'), 50);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const fileInput = document.getElementById('file-input');
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                document.getElementById('file-name').textContent = e.target.files[0].name;
+                document.getElementById('file-error').style.display = 'none';
+            }
+        });
+
+        function addSubject() {
+            const container = document.getElementById('subject-list');
+            const row = document.createElement('div');
+            row.className = "grid grid-cols-2 gap-12";
+            row.innerHTML = `<div class="flex flex-col"><input type="text" placeholder="Subject" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div><div class="flex flex-col"><input type="text" placeholder="Grade" required class="glass-input dark:text-white"><span class="error-msg">Fill in the blank</span></div>`;
+            container.appendChild(row);
+        }
+
+        document.getElementById('applyNowForm').onsubmit = (e) => {
+            e.preventDefault();
+            let valid = true;
+            if (!fileInput.files.length) { document.getElementById('file-error').style.display = 'block'; valid = false; }
+            if (!document.getElementById('cert-check').checked) { document.getElementById('check-error').style.display = 'block'; valid = false; }
+            if (valid) alert("SUBMISSION SUCCESSFUL.");
+        };
+
+        document.getElementById('theme-btn').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
